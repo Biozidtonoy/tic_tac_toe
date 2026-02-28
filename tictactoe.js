@@ -20,8 +20,16 @@ const gameboard =(()=>{
 })();
 
 
-function gamePlayer(name,marker){
-
+function createPlayer(name,marker){
+    const getName = ()=>{
+        return `player name  : ${name}`
+    }
+    const getMarker = ()=>{
+        return `player  marker : ${marker}`
+    }
+    return{getName,getMarker}
 }
+
+
 
 
