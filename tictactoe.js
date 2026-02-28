@@ -93,22 +93,57 @@ const gameController = (()=>{
 
 })();
 
-console.log(gameboard.getBoard());
-console.log(gameController.playRound(0));
-console.log(gameboard.getBoard());
-console.log(gameController.playRound(1));
-console.log(gameboard.getBoard());
-console.log(gameController.playRound(2));
-console.log(gameboard.getBoard());
-console.log(gameController.playRound(3));
-console.log(gameboard.getBoard());
-console.log(gameController.playRound(5));
-console.log(gameboard.getBoard());
-console.log(gameController.playRound(4));
-console.log(gameboard.getBoard());
-console.log(gameController.playRound(6));
-console.log(gameboard.getBoard());
-console.log(gameController.playRound(8));
-console.log(gameboard.getBoard());
-console.log(gameController.playRound(7));
-console.log(gameboard.getBoard());
+
+const displayController = (() => {
+
+    const cells = document.querySelectorAll(".cell");
+    const restartBtn = document.getElementById("restart");
+    const statusText = document.getElementById("status");
+
+    const render = () => {
+        const board = gameboard.getBoard();
+        cells.forEach((cell, index) => {
+            cell.textContent = board[index];
+             if (board[index] === "X") {
+                cell.style.color = "green";   // X → green
+            } 
+            else if (board[index] === "O") {
+                    cell.style.color = "red";     // O → red
+            } 
+            else {
+                    cell.style.color = "black";   // empty cell reset
+            }
+
+        });
+    };
+
+    const handleClick = (e) => {
+    const index = e.target.dataset.index;
+
+    const result = gameController.playRound(Number(index));
+
+    render();
+
+    if (!result) return;
+
+    if (result.status === "win") {
+        statusText.textContent = ` ${result.winner} wins!`;
+    } 
+    else if (result.status === "draw") {
+        statusText.textContent = "It's a draw!";
+    }
+};
+
+    cells.forEach(cell => {
+        cell.addEventListener("click", handleClick);
+    });
+
+    restartBtn.addEventListener("click", () => {
+        gameController.restartGame();
+        render();
+        statusText.textContent = "";
+    });
+
+    render();
+
+})();

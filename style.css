@@ -1,0 +1,45 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.board{
+    /* border: 1px solid green; */
+    height: 50%;
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    box-shadow: 0 5px 15px 0 rgb(0,0,0,0.25);
+}
+.cell{
+    border: 0.5px solid rgb(184, 164, 164);
+    height: 100px;
+    border-radius: 10px;
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    box-shadow: 0 5px 15px 0 rgb(0,0,0,0.25);
+}
+#status{
+    border: 1px solid black;
+    height: 30px;
+    width: 300px;
+}
+#restart{
+    border: none;
+    background-color: green;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+    height: 40px;
+    width: 100px;
+}
+#restart:hover{
+    box-shadow: 0 5px 15px 0 rgb(0,0,20);
+}
